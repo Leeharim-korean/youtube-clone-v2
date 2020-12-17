@@ -1,0 +1,14 @@
+{
+  "name": "youtube-clone-v2",
+  "version": "1.0.0",
+  "description": "Cloning Youtube with VanillaJs and NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "dev:server": "node index.js"
+  },
+  "author": "Leeharim-korean",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
