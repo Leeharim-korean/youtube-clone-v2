@@ -10,7 +10,6 @@ import {
 
 const videoRouter = express.Router();
 
-videoRouter.get("/", videos);
 // routes.videos => /videos/videos
 videoRouter.get(routes.upload, upload);
 videoRouter.get(routes.videoDetail, videoDetail);
