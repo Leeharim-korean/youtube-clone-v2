@@ -1,6 +1,7 @@
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
+// import Video from "../models/Video";
 
 export const getJoin = (req, res) => {
     res.render("join", { pageTitle: "join" });
@@ -26,7 +27,7 @@ export const postJoin = async (req, res, next) => {
                 res.redirect(routes.home);
             }
         }
-    };
+};
 
 export const getLogin = (req, res) => {
     res.render("login", { pageTitle: "Log In" });
@@ -76,12 +77,15 @@ export const getMe = (req, res) => {
 
 export const users = (req, res) => res.render("users");
 
+// videoDetail => userDetail : you can see the videothumnail(beause "userDeail")
+// but if you directly go to user Detail : you can not see it(because "getMe" ) 
 export const userDetail = async (req, res) => {
     const {
         params: { id }
     } = req;
     try {
-        const user= await User.findById(id);
+        const user = await User.findById(id).populate("videos");
+        console.log(user);
         res.render ("userDetail", { pageTitle: "User Detail", user });
     } catch (error) {
         res.redirect(routes.home);
