@@ -71,14 +71,18 @@ export const logout = (req, res) => {
     res.redirect(routes.home);
 };
 
-export const getMe = (req, res) => {
-    res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+export const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).populate("videos");
+        console.log(req.user);
+        res.render ("userDetail", { pageTitle: "User Detail", user });
+    } catch (error) {
+        res.redirect(routes.home);
+    }
 };
 
 export const users = (req, res) => res.render("users");
 
-// videoDetail => userDetail : you can see the videothumnail(beause "userDeail")
-// but if you directly go to user Detail : you can not see it(because "getMe" ) 
 export const userDetail = async (req, res) => {
     const {
         params: { id }
